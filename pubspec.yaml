@@ -1,0 +1,42 @@
+name: unified_v2_app
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.1
+
+  page_router:
+    git: https://github.com/johnpryan/page_router.git
+
+  bloc: ^6.1.1
+  flutter_bloc: ^6.1.1 # Similar view model
+
+  get_it: ^6.0.0-nullsafety.1 # Dependency Injection
+
+  dio: 3.0.10 # http client
+  retrofit: any
+  logger: any  #for logging purpose
+
+  json_annotation: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+  retrofit_generator: any
+  build_runner: any
+  json_serializable: ^3.2.0
+
+flutter:
+  uses-material-design: true
