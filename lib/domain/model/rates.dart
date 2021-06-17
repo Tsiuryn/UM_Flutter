@@ -1,14 +1,14 @@
-class Rates {
-  String base;
-  String date;
-  List<Rate> items;
-
-  Rates({this.base, this.date, this.items});
+class RatesEntity {
+  List<RateModel> items;
+  RatesEntity({this.items});
 }
 
-class Rate {
-  String name;
-  double scale;
+class RateModel {
+  int id;
+  String date;
+  String abbreviation;
+  String rate;
+  int scale;
 
-  Rate({this.name, this.scale});
+  RateModel({this.id, this.date, this.abbreviation, this.rate, this.scale});
 }

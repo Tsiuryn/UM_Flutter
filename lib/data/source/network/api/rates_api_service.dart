@@ -1,15 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
-import 'package:unified_v2_app/data/source/network/model/rates_body.dart';
-
-
+import 'package:unified_v2_app/data/source/network/model/rates.dart';
 part 'rates_api_service.g.dart';
 
-
-@RestApi(baseUrl: "https://api.ratesapi.io/api")
+@RestApi(baseUrl: "https://www.nbrb.by/api/exrates")
 abstract class RatesApiService {
   factory RatesApiService(Dio dio, {String baseUrl}) = _RatesApiService;
 
-  @GET("/latest")
-  Future<RatesBody> getRates();
+  @GET("/rates?periodicity=0")
+  Future<List<Rates>> getRates();
 }

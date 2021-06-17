@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -46,8 +47,9 @@ class SimpleBlocObserver extends BlocObserver {
 
 void main() {
 
+  HttpOverrides.global = new MyHttpOverrides(); // trust all certificate
 
-  getIt.registerSingleton<RatesDataSource>(RatesDataSource(RatesApiService(Dio())),
+  getIt.registerSingleton<RatesDataSource>(RatesDataSource(RatesApiService(Dio()..interceptors.add(LogInterceptor(requestBody: true, responseBody: true)))),
       signalsReady: true);
 
   getIt.registerSingleton<RatesRepository>(RatesRepositoryImpl(getIt<RatesDataSource>()),
@@ -101,6 +103,15 @@ class _AppState extends State<App> {
         },
       ),
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host,
+          int port) => true;
   }
 }
 
